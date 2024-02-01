@@ -1,39 +1,21 @@
 const router = require("express").Router();
 const controller = require("./movies.controller");
 const methodNotAllowed = require("../errors/methodNotAllowed");
-const cors = require("cors");
-
-router.use(cors());
-
 
 const reviewsRouter = require("../reviews/reviews.router");
 const theatersRouter = require("../theaters/theaters.router");
 
 // TODO: Add your routes here
-router
-    .route("/")
+
+router.route("/")
     .get(controller.list)
     .all(methodNotAllowed);
 
-router
-    .route("/?is_showing=true")
-    .get(controller.list)
-    .all(methodNotAllowed);
-
-router
-    .route("/:movie_id")
+router.route("/:movieId")
     .get(controller.read)
     .all(methodNotAllowed);
 
-
-router
-    .route("/:movie_id/reviews", reviewsRouter)
-    .get(controller.read)
-    .all(methodNotAllowed);
-router
-    .route("/:movie_id/theaters", theatersRouter)
-    .get(controller.read)
-    .all(methodNotAllowed);
-
+router.use("/:movieId/reviews", controller.movieExists, reviewsRouter);
+router.use("/:movieId/theaters", controller.movieExists, theatersRouter);
 
 module.exports = router;

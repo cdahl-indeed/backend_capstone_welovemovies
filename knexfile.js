@@ -1,9 +1,9 @@
 const path = require("path");
 
 require("dotenv").config();
-
+//= 'postgres://thinkfuldb_user:Lk08EBxGiVtpSAx5b15D8MP1oiWaKDl5@dpg-clojre946foc73c7dfl0-a.oregon-postgres.render.com/thinkfuldb?ssl=true',
 const {
-  DATABASE_URL = 'postgres://thinkfuldb_user:Lk08EBxGiVtpSAx5b15D8MP1oiWaKDl5@dpg-clojre946foc73c7dfl0-a.oregon-postgres.render.com/thinkfuldb?ssl=true',
+  DATABASE_URL
 } = process.env;
 //DATABASE_URL = "postgresql://postgres@localhost/postgres",
 
